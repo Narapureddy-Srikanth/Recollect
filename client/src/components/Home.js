@@ -1,35 +1,50 @@
 import React from "react";
-import { Col, Container, Row } from "reactstrap";
-import HomeImage from "./../../public/images/home-image.jpg";
+import { Row, Col, Container } from "reactstrap";
+import Jumbotron from "./Jumbotron.js";
+import Contentbody from "./Contentbody.js";
+import Blog from "./../../public/images/article.png";
+import Study from "./../../public/images/teacher.png";
+import Hacker from "./../../public/images/hacker.png";
 
 function Home() {
     return (
-        <section className="jumbotron">
+        <React.Fragment>
+            <Jumbotron />
             <Container>
-                <Row className="align-items-center justify-content-center">
-                    <Col
-                        md={{ size: 6, order: 1 }}
-                        xs={{ size: 10, order: 2 }}
-                        className="text-center pt-3 pb-5"
-                    >
-                        <h2>
-                            Grow your business <strong>Recollect</strong>
-                        </h2>
+                <Row>
+                    <Col xs={12} className="text-center">
                         <h4>
-                            We are the team of talented developer making
-                            website, write more dummy text.
+                            Lot of IT Companies in town. Why you should choose
+                            us?
                         </h4>
                     </Col>
-                    <Col md={{ size: 6, order: 2 }} xs={{ size: 10, order: 1 }}>
-                        <img
-                            src={HomeImage}
-                            className="img-fluid img-animate"
-                            alt="home page image"
-                        />
-                    </Col>
                 </Row>
+                <hr />
             </Container>
-        </section>
+            <Contentbody
+                bgcolor=""
+                textcolor=""
+                order="1"
+                image={Study}
+                heading="Connect with whom?"
+                body="An innovative purpose of this website which allows you to know about other students of the college without meeting them in person. The intention of this page is to enhance the connectivity among students with the same area of interest, state, department, and year."
+            />
+            <Contentbody
+                bgcolor="bg-info"
+                textcolor="text-light"
+                order="2"
+                image={Blog}
+                heading="Connect with whom?"
+                body="An innovative purpose of this website which allows you to know about other students of the college without meeting them in person. The intention of this page is to enhance the connectivity among students with the same area of interest, state, department, and year."
+            />
+            <Contentbody
+                bgcolor=""
+                order="1"
+                image={Hacker}
+                heading="Connect with whom?"
+                body="An innovative purpose of this website which allows you to know about other students of the college without meeting them in person. The intention of this page is to enhance the connectivity among students with the same area of interest, state, department, and year."
+            />
+        </React.Fragment>
     );
 }
 

@@ -40,7 +40,7 @@ class NavigationBar extends Component {
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink exact to="/about" className="nav-link">
+                            <NavLink exact to="/aboutus" className="nav-link">
                                 <i
                                     className="fa fa-user p-1"
                                     aria-hidden="true"
