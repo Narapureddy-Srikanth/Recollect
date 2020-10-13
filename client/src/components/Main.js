@@ -22,19 +22,19 @@ class Main extends Component {
                 <section className={this.state.bgcolor || ""}>
                     <Container>
                         <Row className="justify-content-md-center align-items-center">
-                            <Col xs={1} className="text-center">
+                            <Col xs={2} className="text-center">
                                 <i
                                     className="fa fa-asterisk"
                                     aria-hidden="true"
                                 ></i>
                             </Col>
                             <Col
-                                xs={10}
+                                xs={8}
                                 className={`text-center ${this.state.textcolor}`}
                             >
                                 {this.props.text || ""}
                             </Col>
-                            <Col xs={1} className="text-center">
+                            <Col xs={2} className="text-center">
                                 <button
                                     className="btn"
                                     onClick={this.handleClick}

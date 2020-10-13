@@ -1,0 +1,34 @@
+.jumbotron {
+    background-color: #d2ffe3 !important;
+}
+
+.img-animate {
+    -webkit-animation: mover 1.5s infinite alternate;
+    animation: mover 1.5s infinite alternate;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+@-webkit-keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+@keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .img-animate {
+        margin-top: 20vh;
+        margin-bottom: 20vh;
+    }
+}

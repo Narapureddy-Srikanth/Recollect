@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Main from "./Main.js";
-import Navbar from "./Navbar.js";
+import NavigationBar from "./NavigationBar.js";
 
 class Header extends Component {
     render() {
@@ -11,7 +11,7 @@ class Header extends Component {
                     bgcolor="bg-info"
                     textcolor="text-light"
                 />
-                <Navbar />
+                <NavigationBar />
             </React.Fragment>
         );
     }
