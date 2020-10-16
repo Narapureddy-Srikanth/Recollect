@@ -4,7 +4,7 @@ import HomeImage from "./../../public/images/home-image.jpg";
 
 function Jumbotron() {
     return (
-        <section className="jumbotron">
+        <section className="jumbotron bg-light-blue">
             <Container>
                 <Row className="align-items-center justify-content-center">
                     <Col

@@ -30,8 +30,8 @@ function Home() {
                 body="An innovative purpose of this website which allows you to know about other students of the college without meeting them in person. The intention of this page is to enhance the connectivity among students with the same area of interest, state, department, and year."
             />
             <Contentbody
-                bgcolor="bg-info"
-                textcolor="text-light"
+                bgcolor="bg-light-blue"
+                textcolor="text-dark"
                 order="2"
                 image={Blog}
                 heading="Connect with whom?"

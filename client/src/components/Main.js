@@ -19,8 +19,8 @@ class Main extends Component {
     render() {
         if (this.state.on)
             return (
-                <section className={this.state.bgcolor || ""}>
-                    <Container>
+                <section className={`rounded ${this.state.bgcolor || ""}`}>
+                    <Container fluid>
                         <Row className="justify-content-md-center align-items-center">
                             <Col xs={2} className="text-center">
                                 <i

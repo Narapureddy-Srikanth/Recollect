@@ -5,6 +5,8 @@ import Home from "./components/Home.js";
 import Header from "./components/Header.js";
 import Footer from "./components/Footer.js";
 import Aboutus from "./components/Aboutus.js";
+import Login from "./components/Login.js";
+import Signup from "./components/Signup.js";
 
 class App extends Component {
     render() {
@@ -14,6 +16,8 @@ class App extends Component {
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/aboutus" component={Aboutus} />
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/signup" component={Signup} />
                     <Redirect to="/" />
                 </Switch>
                 <Footer />

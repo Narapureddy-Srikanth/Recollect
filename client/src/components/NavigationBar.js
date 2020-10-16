@@ -11,7 +11,12 @@ class NavigationBar extends Component {
         return (
             <Navbar color="dark" dark expand="md">
                 <NavbarBrand href="/">
-                    <img src={Logo} alt="Logo" width="35px" className="p-1" />
+                    <img
+                        src={Logo}
+                        alt="Logo Image"
+                        width="35px"
+                        className="p-1"
+                    />
                     Recollect
                 </NavbarBrand>
                 <button

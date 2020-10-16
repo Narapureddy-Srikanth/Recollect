@@ -1,7 +1,8 @@
-.jumbotron {
+.bg-light-blue {
     background-color: #d2ffe3 !important;
 }
 
+/* animation part */
 .img-animate {
     -webkit-animation: mover 1.5s infinite alternate;
     animation: mover 1.5s infinite alternate;
@@ -23,6 +24,11 @@
     100% {
         transform: translateY(-20px);
     }
+}
+
+.parentContainer-form {
+    padding-top: 14vh;
+    padding-bottom: 14vh;
 }
 
 /* Medium devices (tablets, 768px and up) */
