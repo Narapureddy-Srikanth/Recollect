@@ -13,7 +13,32 @@ import {
 } from "reactstrap";
 import SignupIcon from "./../../public/images/add-user.png";
 
-class Login extends Component {
+class Signup extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            name: "",
+            email: "",
+            password: "",
+            confirm_password: "",
+        };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.formValidation = this.formValidation.bind(this);
+    }
+    handleInputChange(event) {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        this.setState({
+            [name]: value,
+        });
+    }
+    handleSubmit(event) {
+        // window.alert(JSON.stringify(this.state));
+        event.preventDefault();
+    }
     render() {
         return (
             <section className="bg-light-blue">
@@ -25,13 +50,15 @@ class Login extends Component {
                                     <img
                                         src={SignupIcon}
                                         alt="Login icon Image"
-                                        width="150px"
-                                        className="rounded-circle border border-dark"
+                                        width="120px"
+                                        className="rounded-circle"
                                     />
-                                    <CardTitle className="font-weight-bold">
-                                        Signup Form
+                                    <CardTitle>
+                                        <h3 className="font-weight-bold">
+                                            Signup Form
+                                        </h3>
                                     </CardTitle>
-                                    <Form>
+                                    <Form onSubmit={this.handleSubmit}>
                                         <FormGroup>
                                             <div className="input-group flex-nowrap">
                                                 <div className="input-group-prepend">
@@ -47,6 +74,12 @@ class Login extends Component {
                                                     className="form-control"
                                                     placeholder="Name"
                                                     aria-label="Email"
+                                                    name="name"
+                                                    value={this.state.name}
+                                                    onChange={
+                                                        this.handleInputChange
+                                                    }
+                                                    required
                                                 />
                                             </div>
                                         </FormGroup>
@@ -65,6 +98,12 @@ class Login extends Component {
                                                     className="form-control"
                                                     placeholder="Email"
                                                     aria-label="Email"
+                                                    name="email"
+                                                    value={this.state.email}
+                                                    onChange={
+                                                        this.handleInputChange
+                                                    }
+                                                    required
                                                 />
                                             </div>
                                         </FormGroup>
@@ -83,6 +122,12 @@ class Login extends Component {
                                                     className="form-control"
                                                     placeholder="Password"
                                                     aria-label="Password"
+                                                    name="password"
+                                                    value={this.state.password}
+                                                    onChange={
+                                                        this.handleInputChange
+                                                    }
+                                                    required
                                                 />
                                             </div>
                                         </FormGroup>
@@ -101,11 +146,23 @@ class Login extends Component {
                                                     className="form-control"
                                                     placeholder="Confirm password"
                                                     aria-label="Confirm password"
+                                                    name="confirm_password"
+                                                    value={
+                                                        this.state
+                                                            .confirm_password
+                                                    }
+                                                    onChange={
+                                                        this.handleInputChange
+                                                    }
+                                                    required
                                                 />
                                             </div>
                                         </FormGroup>
                                         <FormGroup>
-                                            <Button className="bg-primary btn-md btn-block">
+                                            <Button
+                                                className="bg-dark btn-md btn-block"
+                                                type="submit"
+                                            >
                                                 Signup
                                             </Button>
                                         </FormGroup>
@@ -120,4 +177,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default Signup;

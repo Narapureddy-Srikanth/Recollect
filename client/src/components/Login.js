@@ -10,11 +10,52 @@ import {
     Input,
     Row,
     Button,
+    FormFeedback,
 } from "reactstrap";
 import LoginIcon from "./../../public/images/user.png";
 
 class Login extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            email: "",
+            password: "",
+        };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        // this.formValidation = this.formValidation.bind(this);
+    }
+    handleInputChange(event) {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        this.setState({
+            [name]: value,
+        });
+    }
+    handleSubmit(event) {
+        // window.alert(JSON.stringify(this.state));
+        event.preventDefault();
+    }
+    // formValidation(email, password) {
+    //     const error = {
+    //         email: "",
+    //         password: "",
+    //     };
+    //     if (email.length === 0) {
+    //         error.email = "Email is required field";
+    //     }
+    //     if (password.length === 0) {
+    //         error.password = "Password is required field";
+    //     }
+    //     return error;
+    // }
     render() {
+        // const error = this.formValidation(
+        //     this.state.email,
+        //     this.state.password
+        // );
         return (
             <section className="bg-light-blue">
                 <Container className="parentContainer-form">
@@ -25,13 +66,15 @@ class Login extends Component {
                                     <img
                                         src={LoginIcon}
                                         alt="Login icon Image"
-                                        width="150px"
-                                        className="rounded-circle border border-dark"
+                                        width="120px"
+                                        className="rounded-circle"
                                     />
-                                    <CardTitle className="font-weight-bold">
-                                        Login Form
+                                    <CardTitle>
+                                        <h3 className="font-weight-bold">
+                                            Login Form
+                                        </h3>
                                     </CardTitle>
-                                    <Form>
+                                    <Form onSubmit={this.handleSubmit}>
                                         <FormGroup>
                                             <div className="input-group flex-nowrap">
                                                 <div className="input-group-prepend">
@@ -47,6 +90,12 @@ class Login extends Component {
                                                     className="form-control"
                                                     placeholder="Email"
                                                     aria-label="Email"
+                                                    name="email"
+                                                    value={this.state.email}
+                                                    onChange={
+                                                        this.handleInputChange
+                                                    }
+                                                    required
                                                 />
                                             </div>
                                         </FormGroup>
@@ -65,11 +114,20 @@ class Login extends Component {
                                                     className="form-control"
                                                     placeholder="Password"
                                                     aria-label="Password"
+                                                    name="password"
+                                                    value={this.state.password}
+                                                    onChange={
+                                                        this.handleInputChange
+                                                    }
+                                                    required
                                                 />
                                             </div>
                                         </FormGroup>
                                         <FormGroup>
-                                            <Button className="bg-primary btn-md btn-block">
+                                            <Button
+                                                className="bg-dark btn-md btn-block"
+                                                type="submit"
+                                            >
                                                 Login
                                             </Button>
                                         </FormGroup>
