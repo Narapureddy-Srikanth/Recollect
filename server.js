@@ -1,6 +1,9 @@
 const express = require("express");
 const mongoose = require("mongoose");
 
+// Routes
+const blogs = require("./routes/blogs");
+
 const app = express();
 
 // Bodyparser Middleware
@@ -14,6 +17,9 @@ mongoose
     .connect(db)
     .then(() => console.log("MongoDB connected..."))
     .catch((err) => console.log(err));
+
+// Use Routes
+app.use("/blogs", blogs);
 
 const PORT = process.env.PORT || 9000;
 

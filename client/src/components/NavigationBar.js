@@ -53,6 +53,15 @@ class NavigationBar extends Component {
                                 About us
                             </NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink exact to="/blogs" className="nav-link">
+                                <i
+                                    className="fa fa-plus-circle p-1"
+                                    aria-hidden="true"
+                                ></i>
+                                Add Blog
+                            </NavLink>
+                        </NavItem>
                     </Nav>
                     <Nav navbar className="ml-auto">
                         <NavItem>
