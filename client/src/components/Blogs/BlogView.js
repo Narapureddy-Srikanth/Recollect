@@ -23,8 +23,7 @@ class BlogView extends Component {
     }
     componentDidMount() {
         const id = this.props.match.params.id;
-        console.log(`http://localhost:9000/blogs/${id}`);
-        axios.get(`http://localhost:9000/blogs/${id}`).then((res) => {
+        axios.get(`/blogs/${id}`).then((res) => {
             const blog = res.data;
             this.setState({ blog: blog });
         });

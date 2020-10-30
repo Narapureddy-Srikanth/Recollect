@@ -52,9 +52,7 @@ class BlogCreate extends Component {
                 "Content-Type": "application/json",
             },
         };
-        await axios
-            .post("http://localhost:9000/blogs/", blog, axiosConfig)
-            .then((res) => {});
+        await axios.post("/blogs/", blog, axiosConfig).then((res) => {});
 
         this.props.history.push("/blogs");
     }

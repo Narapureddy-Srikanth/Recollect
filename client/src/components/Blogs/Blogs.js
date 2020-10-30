@@ -23,7 +23,7 @@ class Blogs extends Component {
         // this.deleteContact = this.deleteContact.bind(this);
     }
     componentDidMount() {
-        axios.get(`http://localhost:9000/blogs/`).then((res) => {
+        axios.get(`/blogs/`).then((res) => {
             const blogs = res.data;
             this.setState({ blogs });
         });
@@ -32,7 +32,7 @@ class Blogs extends Component {
         const updatedblogs = this.state.blogs.filter((blog) => blog._id !== id);
         this.setState({ blogs: updatedblogs });
 
-        axios.delete(`http://localhost:9000/blogs/${id}`).then(() => {});
+        axios.delete(`/blogs/${id}`).then(() => {});
     }
     render() {
         const ListBlogs = this.state.blogs.map(({ _id, title }) => {

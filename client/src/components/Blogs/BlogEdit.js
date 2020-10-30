@@ -30,7 +30,7 @@ class BlogEdit extends Component {
     }
     componentDidMount() {
         const id = this.props.match.params.id;
-        axios.get(`http://localhost:9000/blogs/${id}`).then((res) => {
+        axios.get(`/blogs/${id}`).then((res) => {
             const blog = res.data;
             this.setState({ title: blog.title });
             this.setState({ url: blog.url });
@@ -67,9 +67,7 @@ class BlogEdit extends Component {
                 "Content-Type": "application/json",
             },
         };
-        await axios
-            .put(`http://localhost:9000/blogs/${id}`, blog, axiosConfig)
-            .then((res) => {});
+        await axios.put(`/blogs/${id}`, blog, axiosConfig).then((res) => {});
 
         this.props.history.push("/blogs");
     }
