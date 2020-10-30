@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Container, Row } from "reactstrap";
-import HomeImage from "./../../public/images/home-image.jpg";
+import HomeImage from "./../../../public/images/home-image.jpg";
 
 function Jumbotron() {
     return (

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
 import { NavLink } from "react-router-dom";
-import Logo from "./../../public/images/logo-white.png";
+import Logo from "./../../../public/images/logo-white.png";
 
 class NavigationBar extends Component {
     constructor(props) {

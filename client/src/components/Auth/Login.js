@@ -12,7 +12,7 @@ import {
     Button,
     FormFeedback,
 } from "reactstrap";
-import LoginIcon from "./../../public/images/user.png";
+import LoginIcon from "./../../../public/images/user.png";
 
 class Login extends Component {
     constructor(props) {
@@ -61,7 +61,7 @@ class Login extends Component {
                 <Container className="parentContainer-form">
                     <Row className="justify-content-center">
                         <Col md={6} xs={10}>
-                            <Card>
+                            <Card className="shadow p-3 my-5 rounded">
                                 <CardBody className="text-center">
                                     <img
                                         src={LoginIcon}

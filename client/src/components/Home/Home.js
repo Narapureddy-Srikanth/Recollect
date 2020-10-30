@@ -2,9 +2,9 @@ import React from "react";
 import { Row, Col, Container } from "reactstrap";
 import Jumbotron from "./Jumbotron.js";
 import Contentbody from "./Contentbody.js";
-import Blog from "./../../public/images/article.png";
-import Study from "./../../public/images/teacher.png";
-import Hacker from "./../../public/images/hacker.png";
+import Blog from "./../../../public/images/article.png";
+import Study from "./../../../public/images/teacher.png";
+import Hacker from "./../../../public/images/hacker.png";
 
 function Home() {
     return (

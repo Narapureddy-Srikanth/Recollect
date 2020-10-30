@@ -9,6 +9,11 @@ const app = express();
 // Bodyparser Middleware
 app.use(express.json());
 
+// Cross-origin resource sharing (CORS)
+var cors = require("cors");
+
+app.use(cors()); // Use this after the variable declaration
+
 // DB config
 const db = require("./config/keys").mongoURI;
 

@@ -11,7 +11,7 @@ import {
     Row,
     Button,
 } from "reactstrap";
-import SignupIcon from "./../../public/images/add-user.png";
+import SignupIcon from "./../../../public/images/add-user.png";
 
 class Signup extends Component {
     constructor(props) {
@@ -45,7 +45,7 @@ class Signup extends Component {
                 <Container className="parentContainer-form">
                     <Row className="justify-content-center">
                         <Col md={6} xs={10}>
-                            <Card>
+                            <Card className="shadow p-3 my-5 rounded">
                                 <CardBody className="text-center">
                                     <img
                                         src={SignupIcon}
