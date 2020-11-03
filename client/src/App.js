@@ -77,15 +77,27 @@ class App extends Component {
                     <React.Fragment></React.Fragment>
                 )}
                 <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/aboutus" component={Aboutus} />
-                    <Route exact path="/blogs" component={Blogs} />
-                    <Route exact path="/blogs/view/:id" component={BlogView} />
-                    <Route exact path="/blogs/add" component={BlogCreate} />
-                    <Route exact path="/blogs/edit/:id" component={BlogEdit} />
+                    <Route exact path="/client/" component={Home} />
+                    <Route exact path="/client/aboutus" component={Aboutus} />
+                    <Route exact path="/client/blogs" component={Blogs} />
                     <Route
                         exact
-                        path="/login"
+                        path="/client/blogs/view/:id"
+                        component={BlogView}
+                    />
+                    <Route
+                        exact
+                        path="/client/blogs/add"
+                        component={BlogCreate}
+                    />
+                    <Route
+                        exact
+                        path="/client/blogs/edit/:id"
+                        component={BlogEdit}
+                    />
+                    <Route
+                        exact
+                        path="/client/login"
                         render={(props) => (
                             <Login
                                 {...props}
@@ -94,8 +106,8 @@ class App extends Component {
                             />
                         )}
                     />
-                    <Route exact path="/signup" component={Signup} />
-                    <Redirect to="/" />
+                    <Route exact path="/client/signup" component={Signup} />
+                    <Redirect to="/client/" />
                 </Switch>
                 <Footer />
             </BrowserRouter>

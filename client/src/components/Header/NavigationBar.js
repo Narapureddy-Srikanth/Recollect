@@ -42,7 +42,7 @@ class NavigationBar extends Component {
                 >
                     <Nav navbar className="mr-auto">
                         <NavItem>
-                            <NavLink exact to="/" className="nav-link">
+                            <NavLink exact to="/client/" className="nav-link">
                                 <i
                                     className="fa fa-home p-1"
                                     aria-hidden="true"
@@ -51,7 +51,11 @@ class NavigationBar extends Component {
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink exact to="/aboutus" className="nav-link">
+                            <NavLink
+                                exact
+                                to="/client/aboutus"
+                                className="nav-link"
+                            >
                                 <i
                                     className="fa fa-user p-1"
                                     aria-hidden="true"
@@ -61,7 +65,11 @@ class NavigationBar extends Component {
                         </NavItem>
                         {this.props.loggedInStatus === "Logged_In" ? (
                             <NavItem>
-                                <NavLink exact to="/blogs" className="nav-link">
+                                <NavLink
+                                    exact
+                                    to="/client/blogs"
+                                    className="nav-link"
+                                >
                                     <i
                                         className="fa fa-plus-circle p-1"
                                         aria-hidden="true"
@@ -100,7 +108,7 @@ class NavigationBar extends Component {
                             <NavItem>
                                 <NavLink
                                     exact
-                                    to="/login"
+                                    to="/client/login"
                                     className="nav-link btn btn-outline-info ml-2 text-light"
                                 >
                                     <i
@@ -113,7 +121,7 @@ class NavigationBar extends Component {
                             <NavItem>
                                 <NavLink
                                     exact
-                                    to="/signup"
+                                    to="/client/signup"
                                     className="nav-link btn btn-outline-info ml-2 text-light"
                                 >
                                     <i

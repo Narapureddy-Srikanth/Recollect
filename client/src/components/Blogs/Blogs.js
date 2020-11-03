@@ -44,7 +44,7 @@ class Blogs extends Component {
                                 <h6 className="font-weight-bold">{title}</h6>
                             </Col>
                             <Col xs={1} className="text-center">
-                                <Link to={`/blogs/view/${_id}`}>
+                                <Link to={`/client/blogs/view/${_id}`}>
                                     <i
                                         className="fa fa-eye fa-lg text-info"
                                         aria-hidden="true"
@@ -52,7 +52,7 @@ class Blogs extends Component {
                                 </Link>
                             </Col>
                             <Col xs={1} className="text-center">
-                                <Link to={`/blogs/edit/${_id}`}>
+                                <Link to={`/client/blogs/edit/${_id}`}>
                                     <i
                                         className="fa fa-pencil-square-o fa-lg text-success"
                                         aria-hidden="true"
@@ -95,7 +95,7 @@ class Blogs extends Component {
                             </Button>
                             <Link
                                 className="btn btn-outline-success"
-                                to="/blogs/add"
+                                to="/client/blogs/add"
                             >
                                 Add Problem
                             </Link>

@@ -98,7 +98,7 @@ class BlogView extends Component {
                         </CardBody>
                         <Row>
                             <Col xs="auto" className="ml-auto">
-                                <Link to="/blogs" className="text-dark">
+                                <Link to="/client/blogs" className="text-dark">
                                     {"<"} Back to blog page
                                 </Link>
                             </Col>
