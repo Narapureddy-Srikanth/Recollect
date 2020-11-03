@@ -48,6 +48,15 @@ app.use(cookieParser("14251-11221"));
 
 app.use("/user", users);
 
+// Server Static asserts if in production
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("client/build"));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    });
+}
+
 function auth(req, res, next) {
     if (!req.session.user) {
         var err = new Error("You are not authenticated!");
@@ -68,15 +77,6 @@ app.use(auth);
 
 // Use Routes
 app.use("/blogs", blogs);
-
-// Server Static asserts if in production
-if (process.env.NODE_ENV === "production") {
-    app.use(express.static("client/build"));
-
-    app.get("*", (req, res) => {
-        res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-    });
-}
 
 // error handle
 app.use(function (err, req, res, next) {
