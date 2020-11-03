@@ -1,11 +1,17 @@
 import React, { Component } from "react";
-import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
+import { Navbar, NavbarBrand, Nav, NavItem, Button } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import Logo from "./../../../public/images/logo-white.png";
+import axios from "axios";
 
 class NavigationBar extends Component {
     constructor(props) {
         super(props);
+        this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    }
+    handleLogoutClick(event) {
+        this.props.handleLogout();
+        axios.get("/user/logout").then((res) => {});
     }
     render() {
         return (
@@ -53,44 +59,72 @@ class NavigationBar extends Component {
                                 About us
                             </NavLink>
                         </NavItem>
-                        <NavItem>
-                            <NavLink exact to="/blogs" className="nav-link">
-                                <i
-                                    className="fa fa-plus-circle p-1"
-                                    aria-hidden="true"
-                                ></i>
-                                Add Blog
-                            </NavLink>
-                        </NavItem>
+                        {this.props.loggedInStatus === "Logged_In" ? (
+                            <NavItem>
+                                <NavLink exact to="/blogs" className="nav-link">
+                                    <i
+                                        className="fa fa-plus-circle p-1"
+                                        aria-hidden="true"
+                                    ></i>
+                                    Add Blog
+                                </NavLink>
+                            </NavItem>
+                        ) : (
+                            <React.Fragment />
+                        )}
                     </Nav>
-                    <Nav navbar className="ml-auto">
-                        <NavItem>
-                            <NavLink
-                                exact
-                                to="/login"
-                                className="nav-link btn btn-outline-info mr-2"
-                            >
-                                <i
-                                    className="fa fa-sign-in p-1"
-                                    aria-hidden="true"
-                                ></i>
-                                Login
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink
-                                exact
-                                to="/signup"
-                                className="nav-link btn btn-outline-info mr-2"
-                            >
-                                <i
-                                    className="fa fa-user-plus p-1"
-                                    aria-hidden="true"
-                                ></i>
-                                Signup
-                            </NavLink>
-                        </NavItem>
-                    </Nav>
+                    {this.props.loggedInStatus === "Logged_In" ? (
+                        <Nav navbar className="ml-auto">
+                            <NavItem>
+                                <h5 className="text-light mt-2">
+                                    Hello, {this.props.name}
+                                </h5>
+                            </NavItem>
+                            <NavItem>
+                                <Button
+                                    onClick={this.handleLogoutClick}
+                                    className="ml-2 text-light"
+                                    color="info"
+                                    outline
+                                >
+                                    <i
+                                        className="fa fa-sign-out"
+                                        aria-hidden="true"
+                                    ></i>
+                                    Logout
+                                </Button>
+                            </NavItem>
+                        </Nav>
+                    ) : (
+                        <Nav navbar className="ml-auto">
+                            <NavItem>
+                                <NavLink
+                                    exact
+                                    to="/login"
+                                    className="nav-link btn btn-outline-info ml-2 text-light"
+                                >
+                                    <i
+                                        className="fa fa-sign-in p-1"
+                                        aria-hidden="true"
+                                    ></i>
+                                    Login
+                                </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink
+                                    exact
+                                    to="/signup"
+                                    className="nav-link btn btn-outline-info ml-2 text-light"
+                                >
+                                    <i
+                                        className="fa fa-user-plus p-1"
+                                        aria-hidden="true"
+                                    ></i>
+                                    Signup
+                                </NavLink>
+                            </NavItem>
+                        </Nav>
+                    )}
                 </div>
             </Navbar>
         );

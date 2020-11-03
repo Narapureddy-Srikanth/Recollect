@@ -10,8 +10,13 @@ class Header extends Component {
                     text="scroll down for more information"
                     bgcolor="bg-info"
                     textcolor="text-light"
+                    ClearStatesOnRemove={() => {}}
                 />
-                <NavigationBar />
+                <NavigationBar
+                    loggedInStatus={this.props.loggedInStatus}
+                    name={this.props.name}
+                    handleLogout={this.props.handleLogout}
+                />
             </React.Fragment>
         );
     }

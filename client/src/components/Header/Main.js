@@ -12,6 +12,7 @@ class Main extends Component {
         this.handleClick = this.handleClick.bind(this);
     }
     handleClick(event) {
+        this.props.ClearStatesOnRemove();
         this.setState({
             on: false,
         });

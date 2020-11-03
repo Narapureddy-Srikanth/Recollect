@@ -11,7 +11,9 @@ import {
     Row,
     Button,
 } from "reactstrap";
+import Main from "./../Header/Main";
 import SignupIcon from "./../../../public/images/add-user.png";
+import axios from "axios";
 
 class Signup extends Component {
     constructor(props) {
@@ -22,10 +24,12 @@ class Signup extends Component {
             email: "",
             password: "",
             confirm_password: "",
+            error: "",
+            bgColor: "bg-success",
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        // this.formValidation = this.formValidation.bind(this);
+        this.ClearStatesOnRemove = this.ClearStatesOnRemove.bind(this);
     }
     handleInputChange(event) {
         const name = event.target.name;
@@ -35,13 +39,56 @@ class Signup extends Component {
             [name]: value,
         });
     }
-    handleSubmit(event) {
-        // window.alert(JSON.stringify(this.state));
+    ClearStatesOnRemove() {
+        this.setState({
+            error: "",
+            bgColor: "bg-success",
+        });
+    }
+    async handleSubmit(event) {
         event.preventDefault();
+
+        const NewUser = {
+            name: this.state.name,
+            email: this.state.email,
+            password: this.state.password,
+            confirm_password: this.state.confirm_password,
+        };
+
+        let axiosConfig = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        await axios
+            .post("/user/signup", NewUser, axiosConfig)
+            .then((res) => {
+                this.setState({
+                    error: "Signup Successful",
+                    bgColor: "bg-success",
+                });
+            })
+            .catch((err) => {
+                this.setState({
+                    error: err.response.data,
+                    bgColor: "bg-danger",
+                });
+            });
     }
     render() {
+        const iferror = this.state.error.length > 0;
         return (
             <section className="bg-light-blue">
+                {iferror ? (
+                    <Main
+                        text={this.state.error}
+                        bgcolor={this.state.bgColor}
+                        textcolor="text-light"
+                        ClearStatesOnRemove={this.ClearStatesOnRemove}
+                    />
+                ) : (
+                    <React.Fragment />
+                )}
                 <Container className="parentContainer-form">
                     <Row className="justify-content-center">
                         <Col md={6} xs={10}>

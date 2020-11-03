@@ -11,12 +11,71 @@ import BlogCreate from "./components/Blogs/BlogCreate";
 import BlogEdit from "./components/Blogs/BlogEdit";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
+import Main from "./components/Header/Main";
+import axios from "axios";
 
 class App extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            loggedInStatus: "Not_Logged_In",
+            name: "",
+            LoginLogoutdetails: "",
+        };
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
+    }
+
+    componentDidMount() {
+        axios
+            .get("/user/loggedin", {
+                withCredentials: true,
+            })
+            .then((res) => {
+                if (res.data.loggedin === true) {
+                    this.setState({
+                        loggedInStatus: "Logged_In",
+                        name: res.data.name,
+                    });
+                }
+            });
+    }
+
+    handleLogin(name) {
+        this.setState({
+            loggedInStatus: "Logged_In",
+            name: name,
+            LoginLogoutdetails: "Login Successful",
+        });
+    }
+
+    handleLogout() {
+        this.setState({
+            loggedInStatus: "Not_Logged_In",
+            name: "",
+            LoginLogoutdetails: "Logout Successful",
+        });
+    }
+
     render() {
         return (
             <BrowserRouter>
-                <Header />
+                <Header
+                    loggedInStatus={this.state.loggedInStatus}
+                    name={this.state.name}
+                    handleLogout={this.handleLogout}
+                />
+                {this.state.loggedInStatus === "Logged_In" ? (
+                    <Main
+                        text="Login Successful"
+                        bgcolor="bg-success"
+                        textcolor="text-light"
+                        ClearStatesOnRemove={() => {}}
+                    />
+                ) : (
+                    <React.Fragment></React.Fragment>
+                )}
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/aboutus" component={Aboutus} />
@@ -24,7 +83,17 @@ class App extends Component {
                     <Route exact path="/blogs/view/:id" component={BlogView} />
                     <Route exact path="/blogs/add" component={BlogCreate} />
                     <Route exact path="/blogs/edit/:id" component={BlogEdit} />
-                    <Route exact path="/login" component={Login} />
+                    <Route
+                        exact
+                        path="/login"
+                        render={(props) => (
+                            <Login
+                                {...props}
+                                loggedInStatus={this.state.loggedInStatus}
+                                handleLogin={this.handleLogin}
+                            />
+                        )}
+                    />
                     <Route exact path="/signup" component={Signup} />
                     <Redirect to="/" />
                 </Switch>
