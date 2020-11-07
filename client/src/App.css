@@ -1,6 +1,13 @@
 .bg-light-blue {
     background-color: #d2ffe3 !important;
 }
+#AceEditor {
+    width: 100% !important;
+}
+.custom-heading {
+    font-weight: bold;
+    color: #398f51;
+}
 
 /* animation part */
 .img-animate {

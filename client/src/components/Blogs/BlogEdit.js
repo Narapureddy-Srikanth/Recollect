@@ -13,6 +13,13 @@ import {
 } from "reactstrap";
 import axios from "axios";
 
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/mode-c_cpp";
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/theme-monokai";
+
 class BlogEdit extends Component {
     constructor(props) {
         super(props);
@@ -24,9 +31,13 @@ class BlogEdit extends Component {
             topic: "",
             question: "",
             solution: "",
+            language: "",
+            selected_language: "javascript",
+            AceEditor: "",
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
     componentDidMount() {
         const id = this.props.match.params.id;
@@ -38,9 +49,17 @@ class BlogEdit extends Component {
             this.setState({ topic: blog.topic });
             this.setState({ question: blog.question });
             this.setState({ solution: blog.solution });
+            this.setState({ language: blog.language });
+            this.setState({ selected_language: blog.selected_language });
+            this.setState({ AceEditor: blog.code });
         });
     }
 
+    onChange(newValue) {
+        this.setState({
+            AceEditor: newValue,
+        });
+    }
     handleInputChange(event) {
         const name = event.target.name;
         const value = event.target.value;
@@ -48,6 +67,16 @@ class BlogEdit extends Component {
         this.setState({
             [name]: value,
         });
+        if (name === "language") {
+            let selected_language = "";
+            if (value === "C / C++") selected_language = "c_cpp";
+            else if (value === "Java") selected_language = "java";
+            else if (value === "Javascript") selected_language = "javascript";
+            else if (value === "Python") selected_language = "python";
+            this.setState({
+                selected_language: selected_language,
+            });
+        }
     }
     async handleSubmit(event) {
         event.preventDefault();
@@ -61,6 +90,9 @@ class BlogEdit extends Component {
             topic: this.state.topic,
             question: this.state.question,
             solution: this.state.solution,
+            language: this.state.language,
+            selected_language: this.state.selected_language,
+            code: this.state.AceEditor,
         };
         let axiosConfig = {
             headers: {
@@ -69,7 +101,7 @@ class BlogEdit extends Component {
         };
         await axios.put(`/blogs/${id}`, blog, axiosConfig).then((res) => {});
 
-        this.props.history.push("/blogs");
+        this.props.history.push("/client/blogs");
     }
     render() {
         return (
@@ -487,6 +519,50 @@ class BlogEdit extends Component {
                                                     }
                                                 />
                                             </div>
+                                        </FormGroup>
+                                        <FormGroup row>
+                                            <Col
+                                                md={3}
+                                                xs={6}
+                                                className="ml-auto"
+                                            >
+                                                <Input
+                                                    type="select"
+                                                    className="form-control"
+                                                    placeholder="Language"
+                                                    aria-label="Language"
+                                                    name="language"
+                                                    value={this.state.language}
+                                                    onChange={
+                                                        this.handleInputChange
+                                                    }
+                                                    required
+                                                >
+                                                    <option value=""></option>
+                                                    <option>C / C++</option>
+                                                    <option>Java</option>
+                                                    <option>Javascript</option>
+                                                    <option>Python</option>
+                                                    <option>Others</option>
+                                                </Input>
+                                            </Col>
+                                        </FormGroup>
+                                        <FormGroup>
+                                            <AceEditor
+                                                mode={
+                                                    this.state.selected_language
+                                                }
+                                                theme="monokai"
+                                                placeholder="// Code"
+                                                onChange={this.onChange}
+                                                value={this.state.AceEditor}
+                                                name="AceEditor"
+                                                fontSize={18}
+                                                showPrintMargin={false}
+                                                editorProps={{
+                                                    $blockScrolling: true,
+                                                }}
+                                            />
                                         </FormGroup>
                                         <FormGroup>
                                             <Button

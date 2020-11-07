@@ -13,6 +13,13 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import AceEditor from "react-ace";
+import "ace-builds/src-noconflict/mode-c_cpp";
+import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-javascript";
+import "ace-builds/src-noconflict/mode-python";
+import "ace-builds/src-noconflict/theme-monokai";
+
 class BlogView extends Component {
     constructor(props) {
         super(props);
@@ -93,6 +100,30 @@ class BlogView extends Component {
                             <Row className="bg-light p-3 rounded">
                                 <Col>
                                     <p>{this.state.blog.solution}</p>
+                                </Col>
+                            </Row>
+                            <Row className="rounded my-3">
+                                <Col xs="auto" className="ml-auto">
+                                    <span className="border border-danger p-1">
+                                        {this.state.blog.language}
+                                    </span>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col>
+                                    <AceEditor
+                                        mode={this.state.blog.selected_language}
+                                        theme="monokai"
+                                        placeholder="// Code"
+                                        value={this.state.blog.code}
+                                        name="AceEditor"
+                                        fontSize={18}
+                                        readOnly={true}
+                                        showPrintMargin={false}
+                                        editorProps={{
+                                            $blockScrolling: true,
+                                        }}
+                                    />
                                 </Col>
                             </Row>
                         </CardBody>

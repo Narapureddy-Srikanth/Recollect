@@ -27,6 +27,17 @@ const BlogSchema = new Schema(
         solution: {
             type: String,
         },
+        language: {
+            type: String,
+            required: true,
+        },
+        selected_language: {
+            type: String,
+            required: true,
+        },
+        code: {
+            type: String,
+        },
     },
     {
         timestamps: true,

@@ -21,6 +21,9 @@ BlogRouter.post("/", (req, res, next) => {
         url: req.body.url,
         question: req.body.question,
         solution: req.body.solution,
+        language: req.body.language,
+        selected_language: req.body.selected_language,
+        code: req.body.code,
     });
     newBlog
         .save()

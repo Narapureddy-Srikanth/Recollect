@@ -49,7 +49,7 @@ app.use(cookieParser("14251-11221"));
 app.use("/user", users);
 
 // Server Static asserts if in production
-if (process.env.NODE_ENV === "production" || true) {
+if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 
     app.get("/client/*", (req, res) => {
