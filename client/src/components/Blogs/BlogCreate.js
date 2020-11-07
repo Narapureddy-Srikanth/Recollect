@@ -14,11 +14,6 @@ import {
 import axios from "axios";
 
 import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/mode-c_cpp";
-import "ace-builds/src-noconflict/mode-java";
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/mode-python";
-import "ace-builds/src-noconflict/theme-monokai";
 
 class BlogCreate extends Component {
     constructor(props) {
@@ -540,6 +535,9 @@ class BlogCreate extends Component {
                                                 name="AceEditor"
                                                 fontSize={18}
                                                 showPrintMargin={false}
+                                                setOptions={{
+                                                    useWorker: false,
+                                                }}
                                                 editorProps={{
                                                     $blockScrolling: true,
                                                 }}

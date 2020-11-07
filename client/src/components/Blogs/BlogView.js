@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-    Button,
     Card,
     CardBody,
     CardSubtitle,
@@ -13,12 +12,14 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import * as ace from "ace-builds";
 import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/mode-c_cpp";
-import "ace-builds/src-noconflict/mode-java";
-import "ace-builds/src-noconflict/mode-javascript";
-import "ace-builds/src-noconflict/mode-python";
-import "ace-builds/src-noconflict/theme-monokai";
+
+// cdnjs didn't have a "no-conflict" version, so we'll use jsdelivr
+const CDN = "https://cdn.jsdelivr.net/npm/ace-builds@1.3.3/src-min-noconflict";
+
+// Now we tell ace to use the CDN locations to look for files
+ace.config.set("basePath", CDN);
 
 class BlogView extends Component {
     constructor(props) {
@@ -28,9 +29,9 @@ class BlogView extends Component {
             blog: {},
         };
     }
-    componentDidMount() {
+    async componentDidMount() {
         const id = this.props.match.params.id;
-        axios.get(`/blogs/${id}`).then((res) => {
+        await axios.get(`/blogs/${id}`).then((res) => {
             const blog = res.data;
             this.setState({ blog: blog });
         });
@@ -118,11 +119,14 @@ class BlogView extends Component {
                                         value={this.state.blog.code}
                                         name="AceEditor"
                                         fontSize={18}
-                                        readOnly={true}
                                         showPrintMargin={false}
+                                        setOptions={{
+                                            useWorker: false,
+                                        }}
                                         editorProps={{
                                             $blockScrolling: true,
                                         }}
+                                        readOnly={true}
                                     />
                                 </Col>
                             </Row>
