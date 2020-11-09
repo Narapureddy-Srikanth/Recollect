@@ -63,6 +63,19 @@ class NavigationBar extends Component {
                                 About us
                             </NavLink>
                         </NavItem>
+                        <NavItem>
+                            <NavLink
+                                exact
+                                to="/client/problemslist"
+                                className="nav-link"
+                            >
+                                <i
+                                    className="fa fa-book p-1"
+                                    aria-hidden="true"
+                                ></i>
+                                Problems List
+                            </NavLink>
+                        </NavItem>
                         {this.props.loggedInStatus === "Logged_In" ? (
                             <NavItem>
                                 <NavLink

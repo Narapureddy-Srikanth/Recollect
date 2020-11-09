@@ -11,7 +11,6 @@ const BlogSchema = new Schema(
         },
         difficulty: {
             type: String,
-            required: true,
         },
         topic: {
             type: String,

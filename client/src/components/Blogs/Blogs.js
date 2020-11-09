@@ -11,7 +11,6 @@ import {
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { json } from "body-parser";
 
 class Blogs extends Component {
     constructor(props) {
@@ -20,10 +19,9 @@ class Blogs extends Component {
         this.state = {
             blogs: [],
         };
-        // this.deleteContact = this.deleteContact.bind(this);
     }
-    componentDidMount() {
-        axios.get(`/blogs/`).then((res) => {
+    async componentDidMount() {
+        await axios.get(`/blogs/`).then((res) => {
             const blogs = res.data;
             this.setState({ blogs });
         });

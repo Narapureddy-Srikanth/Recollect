@@ -13,6 +13,7 @@ const cookieParser = require("cookie-parser");
 // Routes
 const users = require("./routes/users");
 const blogs = require("./routes/blogs");
+const problemslists = require("./routes/problemslists");
 
 const app = express();
 
@@ -47,6 +48,7 @@ app.use(
 app.use(cookieParser("14251-11221"));
 
 app.use("/user", users);
+app.use("/problemslist", problemslists);
 
 // Server Static asserts if in production
 if (process.env.NODE_ENV === "production") {

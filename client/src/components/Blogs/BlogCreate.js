@@ -178,7 +178,6 @@ class BlogCreate extends Component {
                                                             this
                                                                 .handleInputChange
                                                         }
-                                                        required
                                                     >
                                                         <option value=""></option>
                                                         <option>Easy</option>

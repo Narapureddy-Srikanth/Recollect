@@ -12,6 +12,7 @@ import BlogEdit from "./components/Blogs/BlogEdit";
 import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import Main from "./components/Header/Main";
+import ProblemsList from "./components/Problems/ProblemsList";
 import axios from "axios";
 
 class App extends Component {
@@ -105,6 +106,11 @@ class App extends Component {
                                 handleLogin={this.handleLogin}
                             />
                         )}
+                    />
+                    <Route
+                        exact
+                        path="/client/problemslist"
+                        component={ProblemsList}
                     />
                     <Route exact path="/client/signup" component={Signup} />
                     <Redirect to="/client/" />
