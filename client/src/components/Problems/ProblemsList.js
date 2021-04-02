@@ -36,6 +36,7 @@ class ProblemsList extends Component {
             language: "Javascript",
             selected_language: "javascript",
             code: "",
+            userID: this.props.userID,
         };
         let axiosConfig = {
             headers: {

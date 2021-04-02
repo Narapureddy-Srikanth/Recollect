@@ -30,8 +30,9 @@ class BlogView extends Component {
         };
     }
     async componentDidMount() {
+        var uid = this.props.userID;
         const id = this.props.match.params.id;
-        await axios.get(`/blogs/${id}`).then((res) => {
+        await axios.get(`/blogs/${uid}/${id}`).then((res) => {
             const blog = res.data;
             this.setState({ blog: blog });
         });

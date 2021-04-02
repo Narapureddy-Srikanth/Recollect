@@ -70,7 +70,7 @@ class Login extends Component {
                     error: "Login Successful",
                     bgColor: "bg-success",
                 });
-                this.props.handleLogin(res.data.name);
+                this.props.handleLogin(res.data.name, res.data.userID);
                 this.props.history.push("/");
             })
             .catch((err) => {

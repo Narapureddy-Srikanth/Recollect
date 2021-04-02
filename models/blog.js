@@ -7,7 +7,6 @@ const BlogSchema = new Schema(
         title: {
             type: String,
             required: true,
-            unique: true,
         },
         difficulty: {
             type: String,
@@ -36,6 +35,10 @@ const BlogSchema = new Schema(
         },
         code: {
             type: String,
+        },
+        userID: {
+            type: String,
+            required: true,
         },
     },
     {

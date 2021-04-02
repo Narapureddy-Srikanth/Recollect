@@ -21,7 +21,8 @@ class Blogs extends Component {
         };
     }
     async componentDidMount() {
-        await axios.get(`/blogs/`).then((res) => {
+        var userID = this.props.userID;
+        await axios.get(`/blogs/${userID}`).then((res) => {
             const blogs = res.data;
             this.setState({ blogs });
         });
@@ -29,8 +30,8 @@ class Blogs extends Component {
     deleteContact(id) {
         const updatedblogs = this.state.blogs.filter((blog) => blog._id !== id);
         this.setState({ blogs: updatedblogs });
-
-        axios.delete(`/blogs/${id}`).then(() => {});
+        var userID = this.state.userID;
+        axios.delete(`/blogs/${userID}/${id}`).then(() => {});
     }
     render() {
         const ListBlogs = this.state.blogs.map(({ _id, title }) => {
