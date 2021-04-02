@@ -28,9 +28,19 @@ UserRouter.post("/signup", (req, res, next) => {
             }
         })
         .then((user) => {
+            req.session.user = "authenticated";
+
             res.statusCode = 200;
             res.setHeader("Content-Type", "application/json");
-            res.json({ status: "Registration Successfull", user: user });
+
+            // set cookies
+            res.cookie("name", user.name, { signed: true });
+            res.cookie("userID", user._id, { signed: true });
+            res.json({
+                status: "Registration Successfull",
+                name: user.name,
+                userID: user._id,
+            });
         })
         .catch((err) => next(err));
 });

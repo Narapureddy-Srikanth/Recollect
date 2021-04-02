@@ -67,6 +67,8 @@ class Signup extends Component {
                     error: "Signup Successful",
                     bgColor: "bg-success",
                 });
+                this.props.handleLogin(res.data.name, res.data.userID);
+                this.props.history.push("/");
             })
             .catch((err) => {
                 this.setState({
