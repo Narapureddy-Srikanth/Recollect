@@ -132,7 +132,17 @@ class App extends Component {
                             />
                         )}
                     />
-                    <Route exact path="/client/signup" component={Signup} />
+                    <Route
+                        exact
+                        path="/client/signup"
+                        render={(props) => (
+                            <Signup
+                                {...props}
+                                loggedInStatus={this.state.loggedInStatus}
+                                handleLogin={this.handleLogin}
+                            />
+                        )}
+                    />
                     <Redirect to="/client/" />
                 </Switch>
                 <Footer />
