@@ -34,6 +34,7 @@ class BlogCreate extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
     }
+
     onChange(newValue) {
         this.setState({
             AceEditor: newValue,
@@ -70,6 +71,7 @@ class BlogCreate extends Component {
             language: this.state.language,
             selected_language: this.state.selected_language,
             code: this.state.AceEditor,
+            userID: this.props.userID,
         };
         let axiosConfig = {
             headers: {

@@ -29,14 +29,16 @@ class BlogEdit extends Component {
             language: "",
             selected_language: "javascript",
             AceEditor: "",
+            userID: "",
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
     }
     componentDidMount() {
+        var uid = this.props.userID;
         const id = this.props.match.params.id;
-        axios.get(`/blogs/${id}`).then((res) => {
+        axios.get(`/blogs/${uid}/${id}`).then((res) => {
             const blog = res.data;
             this.setState({ title: blog.title });
             this.setState({ url: blog.url });
@@ -88,6 +90,7 @@ class BlogEdit extends Component {
             language: this.state.language,
             selected_language: this.state.selected_language,
             code: this.state.AceEditor,
+            userID: this.props.userID,
         };
         let axiosConfig = {
             headers: {

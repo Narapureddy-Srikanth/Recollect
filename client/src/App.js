@@ -23,6 +23,7 @@ class App extends Component {
             loggedInStatus: "Not_Logged_In",
             name: "",
             LoginLogoutdetails: "",
+            userID: "",
         };
         this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
@@ -38,15 +39,17 @@ class App extends Component {
                     this.setState({
                         loggedInStatus: "Logged_In",
                         name: res.data.name,
+                        userID: res.data.userID,
                     });
                 }
             });
     }
 
-    handleLogin(name) {
+    handleLogin(name, ID) {
         this.setState({
             loggedInStatus: "Logged_In",
             name: name,
+            userID: ID,
             LoginLogoutdetails: "Login Successful",
         });
     }
@@ -79,22 +82,34 @@ class App extends Component {
                 )}
                 <Switch>
                     <Route exact path="/client/" component={Home} />
-                    <Route exact path="/client/aboutus" component={Aboutus} />
-                    <Route exact path="/client/blogs" component={Blogs} />
+                    {/* <Route exact path="/client/aboutus" component={Aboutus} /> */}
+                    <Route
+                        exact
+                        path="/client/blogs"
+                        render={(props) => (
+                            <Blogs {...props} userID={this.state.userID} />
+                        )}
+                    />
                     <Route
                         exact
                         path="/client/blogs/view/:id"
-                        component={BlogView}
+                        render={(props) => (
+                            <BlogView {...props} userID={this.state.userID} />
+                        )}
                     />
                     <Route
                         exact
                         path="/client/blogs/add"
-                        component={BlogCreate}
+                        render={(props) => (
+                            <BlogCreate {...props} userID={this.state.userID} />
+                        )}
                     />
                     <Route
                         exact
                         path="/client/blogs/edit/:id"
-                        component={BlogEdit}
+                        render={(props) => (
+                            <BlogEdit {...props} userID={this.state.userID} />
+                        )}
                     />
                     <Route
                         exact
@@ -110,7 +125,12 @@ class App extends Component {
                     <Route
                         exact
                         path="/client/problemslist"
-                        component={ProblemsList}
+                        render={(props) => (
+                            <ProblemsList
+                                {...props}
+                                userID={this.state.userID}
+                            />
+                        )}
                     />
                     <Route exact path="/client/signup" component={Signup} />
                     <Redirect to="/client/" />

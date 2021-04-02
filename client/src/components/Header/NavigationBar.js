@@ -50,7 +50,7 @@ class NavigationBar extends Component {
                                 Home
                             </NavLink>
                         </NavItem>
-                        <NavItem>
+                        {/* <NavItem>
                             <NavLink
                                 exact
                                 to="/client/aboutus"
@@ -62,7 +62,7 @@ class NavigationBar extends Component {
                                 ></i>
                                 About us
                             </NavLink>
-                        </NavItem>
+                        </NavItem> */}
                         <NavItem>
                             <NavLink
                                 exact

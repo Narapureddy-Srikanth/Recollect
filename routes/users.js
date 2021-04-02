@@ -68,7 +68,8 @@ UserRouter.post("/login", (req, res, next) => {
                         res.setHeader("Content-Type", "application/json");
                         // set cookies
                         res.cookie("name", user.name, { signed: true });
-                        res.json({ name: user.name });
+                        res.cookie("userID", user._id, { signed: true });
+                        res.json({ name: user.name, userID: user._id });
                     }
                 } else {
                     let err = new Error("email " + email + " not exists!");
@@ -88,10 +89,11 @@ UserRouter.get("/loggedin", (req, res, next) => {
     res.statusCode = 200;
     res.setHeader("Content-Type", "application/json");
     var name = req.signedCookies.name;
+    var ID = req.signedCookies.userID;
     if (req.session.user) {
-        res.json({ loggedin: true, name: name });
+        res.json({ loggedin: true, name: name, userID: ID });
     } else {
-        res.json({ loggedin: false, name: "" });
+        res.json({ loggedin: false, name: "", userID: "" });
     }
 });
 
@@ -100,6 +102,7 @@ UserRouter.get("/logout", (req, res, next) => {
         req.session.destroy();
         res.clearCookie("session-id");
         res.clearCookie("name");
+        res.clearCookie("userID");
     } else {
         var err = new Error("You are not logged in!");
         err.status = 403;
