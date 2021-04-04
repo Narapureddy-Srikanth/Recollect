@@ -7,6 +7,7 @@ import {
     Col,
     Button,
     Input,
+    Form,
 } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Link } from "react-router-dom";
@@ -18,14 +19,37 @@ class Blogs extends Component {
 
         this.state = {
             blogs: [],
+            search: "",
         };
+        this.handleInputChange = this.handleInputChange.bind(this);
+    }
+    handleInputChange(event) {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        this.setState({
+            [name]: value,
+        });
     }
     async componentDidMount() {
-        var userID = this.props.userID;
-        await axios.get(`/blogs/${userID}`).then((res) => {
-            const blogs = res.data;
-            this.setState({ blogs });
-        });
+        setTimeout(async () => {
+            var userID = this.props.userID;
+            await axios.get(`/blogs/${userID}`).then((res) => {
+                const blogs = res.data;
+                this.setState({ blogs });
+            });
+        }, 500);
+    }
+
+    BlogListOnSearch() {
+        setTimeout(async () => {
+            var userID = this.props.userID;
+            var search = this.state.search;
+            await axios.get(`/blogs/${userID}/${search}`).then((res) => {
+                const blogs = res.data;
+                this.setState({ blogs });
+            });
+        }, 500);
     }
     deleteContact(id) {
         const updatedblogs = this.state.blogs.filter((blog) => blog._id !== id);
@@ -81,25 +105,34 @@ class Blogs extends Component {
                 </h3>
                 <hr />
                 <Container>
-                    <div className="input-group mb-5">
-                        <Input
-                            type="text"
-                            className="form-control"
-                            placeholder="Search..."
-                            aria-label="Search Title"
-                        />
-                        <div className="input-group-append">
-                            <Button color="info" outline type="button">
-                                Search
-                            </Button>
-                            <Link
-                                className="btn btn-outline-success"
-                                to="/client/blogs/add"
-                            >
-                                Add Problem
-                            </Link>
+                    <Form onSubmit={this.handleSubmit}>
+                        <div className="input-group mb-5">
+                            <Input
+                                type="text"
+                                className="form-control"
+                                placeholder="Search..."
+                                aria-label="Search Title"
+                                name="search"
+                                value={this.state.search}
+                                onChange={this.handleInputChange}
+                            />
+                            <div className="input-group-append">
+                                <Button
+                                    color="info"
+                                    outline
+                                    onClick={this.BlogListOnSearch.bind(this)}
+                                >
+                                    Search
+                                </Button>
+                                <Link
+                                    className="btn btn-outline-success"
+                                    to="/client/blogs/add"
+                                >
+                                    Add Problem
+                                </Link>
+                            </div>
                         </div>
-                    </div>
+                    </Form>
                     <ListGroup>
                         <TransitionGroup>{ListBlogs}</TransitionGroup>
                     </ListGroup>

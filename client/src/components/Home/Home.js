@@ -14,8 +14,7 @@ function Home() {
                 <Row>
                     <Col xs={12} className="text-center">
                         <h4>
-                            Lot of IT Companies in town. Why you should choose
-                            us?
+                            Lot of Websites in town. Why you should choose us?
                         </h4>
                     </Col>
                 </Row>
@@ -26,23 +25,25 @@ function Home() {
                 textcolor=""
                 order="1"
                 image={Study}
-                heading="Connect with whom?"
-                body="An innovative purpose of this website which allows you to know about other students of the college without meeting them in person. The intention of this page is to enhance the connectivity among students with the same area of interest, state, department, and year."
+                heading="Why Recollect?"
+                body="Recollect is one of the best online data storage websites that focuses on privacy, simplicity, availability and the easiness of writing. The name itself says the reason behind innovating it. It is extremely easy to use and user friendly. With a lot more features, it provides you an easy to use platform where you can write and maintain your Codes and keep a track of your placement preparation."
             />
+
             <Contentbody
                 bgcolor="bg-light-blue"
                 textcolor="text-dark"
                 order="2"
-                image={Blog}
-                heading="Connect with whom?"
-                body="An innovative purpose of this website which allows you to know about other students of the college without meeting them in person. The intention of this page is to enhance the connectivity among students with the same area of interest, state, department, and year."
+                image={Hacker}
+                heading="Your Security is our Top Priority!"
+                body="There are so many ways that can make you feel concerned, if things get misplaced or lost. Obviously you have put too much effort especially at the peak time of Placements, don’t afford that something can damage or destroy this precious Codes. Recollect is specifically designed by considering these factors. Our services are secure and encrypted. So you can rest assured knowing that your Codes are safe and no one can stumble onto them."
             />
             <Contentbody
                 bgcolor=""
+                textcolor=""
                 order="1"
-                image={Hacker}
-                heading="Connect with whom?"
-                body="An innovative purpose of this website which allows you to know about other students of the college without meeting them in person. The intention of this page is to enhance the connectivity among students with the same area of interest, state, department, and year."
+                image={Blog}
+                heading="Study with Comfort..."
+                body="We know that It is simply impossible to carry a Laptop with you all the time, using Recollect you can access your Codes anytime and from anywhere you want. All you need is a computer system and an internet connection. Recollect also provides 450+ standard coding interview problems topics and makes you job ready."
             />
         </React.Fragment>
     );

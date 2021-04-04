@@ -12,13 +12,19 @@ function Jumbotron() {
                         xs={{ size: 10, order: 2 }}
                         className="text-center pt-3 pb-5"
                     >
-                        <h2>
-                            Grow your business <strong>Recollect</strong>
-                        </h2>
-                        <h4>
-                            We are the team of talented developer making
-                            website, write more dummy text.
-                        </h4>
+                        <h3>
+                            Eat, Sleep, Code, Repeat with{" "}
+                            <strong>Recollect</strong>
+                        </h3>
+                        <blockquote>
+                            <h4>
+                                It's never too late in fiction or in life to
+                                revise.
+                            </h4>
+                            <footer className="blockquote-footer">
+                                Nancy Thayar
+                            </footer>
+                        </blockquote>
                     </Col>
                     <Col md={{ size: 6, order: 2 }} xs={{ size: 10, order: 1 }}>
                         <img

@@ -5,6 +5,28 @@ const BlogRouter = express.Router();
 // export the blog model
 const blog = require("../models/blog");
 
+BlogRouter.get("/:uid/:search", (req, res, next) => {
+    blog.find({
+        $and: [
+            {
+                $or: [
+                    { title: { $regex: req.params.search, $options: "$i" } },
+                    { topic: { $regex: req.params.search, $options: "$i" } },
+                    {
+                        difficulty: {
+                            $regex: req.params.search,
+                            $options: "$i",
+                        },
+                    },
+                ],
+            },
+            { userID: req.params.uid },
+        ],
+    })
+        .sort({ createdAt: -1 })
+        .then((blogs) => res.json(blogs))
+        .catch((err) => next(err));
+});
 BlogRouter.get("/:uid", (req, res, next) => {
     blog.find({ userID: req.params.uid })
         .sort({ createdAt: -1 })
