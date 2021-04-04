@@ -17,10 +17,27 @@ class ProblemsList extends Component {
 
         this.state = {
             lists: [],
+            search: "",
         };
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
     async componentDidMount() {
         await axios.get(`/problemslist/`).then((res) => {
+            const lists = res.data;
+            this.setState({ lists });
+        });
+    }
+    handleInputChange(event) {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        this.setState({
+            [name]: value,
+        });
+    }
+    async BlogListOnSearch() {
+        var search = this.state.search;
+        await axios.get(`/problemslist/${search}`).then((res) => {
             const lists = res.data;
             this.setState({ lists });
         });
@@ -97,9 +114,16 @@ class ProblemsList extends Component {
                             className="form-control"
                             placeholder="Search..."
                             aria-label="Search Title"
+                            name="search"
+                            value={this.state.search}
+                            onChange={this.handleInputChange}
                         />
                         <div className="input-group-append">
-                            <Button color="info" outline type="button">
+                            <Button
+                                color="info"
+                                outline
+                                onClick={this.BlogListOnSearch.bind(this)}
+                            >
                                 Search
                             </Button>
                         </div>

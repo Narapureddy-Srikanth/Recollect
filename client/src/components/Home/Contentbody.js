@@ -8,7 +8,7 @@ class Contentbody extends Component {
                 <Container>
                     <Row className="align-items-center p-5">
                         <Col
-                            md={6}
+                            md={4}
                             xs={{ order: this.props.order }}
                             className="text-center"
                         >
@@ -20,7 +20,7 @@ class Contentbody extends Component {
                             />
                         </Col>
                         <Col
-                            md={6}
+                            md={8}
                             xs={{ order: 3 - this.props.order }}
                             className={`text-center ${this.props.textcolor}`}
                         >
