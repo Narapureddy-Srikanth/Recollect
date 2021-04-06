@@ -27,13 +27,13 @@ BlogRouter.get("/:uid/:search", (req, res, next) => {
         .then((blogs) => res.json(blogs))
         .catch((err) => next(err));
 });
+BlogRouter.get("/:uid/view/:id", (req, res, next) => {
+    blog.findById(req.params.id).then((blog) => res.json(blog));
+});
 BlogRouter.get("/:uid", (req, res, next) => {
     blog.find({ userID: req.params.uid })
         .sort({ createdAt: -1 })
         .then((blogs) => res.json(blogs));
-});
-BlogRouter.get("/:uid/:id", (req, res, next) => {
-    blog.findById(req.params.id).then((blog) => res.json(blog));
 });
 BlogRouter.post("/", (req, res, next) => {
     const newBlog = new blog({

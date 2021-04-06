@@ -68,7 +68,7 @@ class ProblemsList extends Component {
         const ListProblems = this.state.lists.map(({ _id, name, topic }) => {
             if (name.length === 0) return;
             return (
-                <CSSTransition key={_id} timeout={500}>
+                <CSSTransition key={_id} timeout={200}>
                     <ListGroupItem className="bg-light-blue shadow mb-4 rounded">
                         <Row className="align-items-center">
                             <Col md={11} xs={10}>
