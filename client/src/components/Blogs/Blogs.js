@@ -60,7 +60,7 @@ class Blogs extends Component {
     render() {
         const ListBlogs = this.state.blogs.map(({ _id, title }) => {
             return (
-                <CSSTransition key={_id} classNames="fade" timeout={500}>
+                <CSSTransition key={_id} classNames="fade" timeout={200}>
                     <ListGroupItem className="bg-light-blue shadow mb-4 rounded">
                         <Row className="align-items-center">
                             <Col md={9} xs={8}>

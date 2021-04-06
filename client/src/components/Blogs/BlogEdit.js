@@ -38,7 +38,7 @@ class BlogEdit extends Component {
     componentDidMount() {
         var uid = this.props.userID;
         const id = this.props.match.params.id;
-        axios.get(`/blogs/${uid}/${id}`).then((res) => {
+        axios.get(`/blogs/${uid}/view/${id}`).then((res) => {
             const blog = res.data;
             this.setState({ title: blog.title });
             this.setState({ url: blog.url });
