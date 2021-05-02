@@ -6,7 +6,7 @@
 ### Features
 - List of standard problems
 - Store programming concepts online
-- Has embeddable code editor
+- Has embedded code editor
 - secure
 - simple UI
 
