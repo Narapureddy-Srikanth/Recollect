@@ -1,7 +1,7 @@
 ## :cloud: Recollect is a project that makes your placement preparation easy :student:.
 
-* ### Front-End - ReactJS
-* ### Back-End - NodeJS, ExpressJS and MongoDB
+* ## Front-End - ReactJS
+* ## Back-End - NodeJS, ExpressJS and MongoDB
 
 ### Features
 - List of standard problems
