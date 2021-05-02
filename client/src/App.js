@@ -13,6 +13,7 @@ import Login from "./components/Auth/Login";
 import Signup from "./components/Auth/Signup";
 import Main from "./components/Header/Main";
 import ProblemsList from "./components/Problems/ProblemsList";
+import Loading from "./components/Header/Loading";
 import axios from "axios";
 
 class App extends Component {
@@ -24,12 +25,18 @@ class App extends Component {
             name: "",
             LoginLogoutdetails: "",
             userID: "",
+            loading: false,
         };
         this.handleLogin = this.handleLogin.bind(this);
         this.handleLogout = this.handleLogout.bind(this);
     }
 
     componentDidMount() {
+        this.setState({ loading: true });
+        setTimeout(() => {
+            this.setState({ loading: false });
+        }, 1000);
+
         axios
             .get("/user/loggedin", {
                 withCredentials: true,
@@ -65,87 +72,109 @@ class App extends Component {
     render() {
         return (
             <BrowserRouter>
-                <Header
-                    loggedInStatus={this.state.loggedInStatus}
-                    name={this.state.name}
-                    handleLogout={this.handleLogout}
-                />
-                {this.state.loggedInStatus === "Logged_In" ? (
-                    <Main
-                        text="Login Successful"
-                        bgcolor="bg-success"
-                        textcolor="text-light"
-                        ClearStatesOnRemove={() => {}}
-                    />
+                {this.state.loading === true ? (
+                    <Loading />
                 ) : (
-                    <React.Fragment></React.Fragment>
+                    <section>
+                        <Header
+                            loggedInStatus={this.state.loggedInStatus}
+                            name={this.state.name}
+                            handleLogout={this.handleLogout}
+                        />
+                        {this.state.loggedInStatus === "Logged_In" ? (
+                            <Main
+                                text="Login Successful"
+                                bgcolor="bg-success"
+                                textcolor="text-light"
+                                ClearStatesOnRemove={() => {}}
+                            />
+                        ) : (
+                            <React.Fragment></React.Fragment>
+                        )}
+                        <Switch>
+                            <Route exact path="/client/" component={Home} />
+                            {/* <Route exact path="/client/aboutus" component={Aboutus} /> */}
+                            <Route
+                                exact
+                                path="/client/blogs"
+                                render={(props) => (
+                                    <Blogs
+                                        {...props}
+                                        userID={this.state.userID}
+                                    />
+                                )}
+                            />
+                            <Route
+                                exact
+                                path="/client/blogs/view/:id"
+                                render={(props) => (
+                                    <BlogView
+                                        {...props}
+                                        userID={this.state.userID}
+                                    />
+                                )}
+                            />
+                            <Route
+                                exact
+                                path="/client/blogs/add"
+                                render={(props) => (
+                                    <BlogCreate
+                                        {...props}
+                                        userID={this.state.userID}
+                                    />
+                                )}
+                            />
+                            <Route
+                                exact
+                                path="/client/blogs/edit/:id"
+                                render={(props) => (
+                                    <BlogEdit
+                                        {...props}
+                                        userID={this.state.userID}
+                                    />
+                                )}
+                            />
+                            <Route
+                                exact
+                                path="/client/login"
+                                render={(props) => (
+                                    <Login
+                                        {...props}
+                                        loggedInStatus={
+                                            this.state.loggedInStatus
+                                        }
+                                        handleLogin={this.handleLogin}
+                                    />
+                                )}
+                            />
+                            <Route
+                                exact
+                                path="/client/problemslist"
+                                render={(props) => (
+                                    <ProblemsList
+                                        {...props}
+                                        userID={this.state.userID}
+                                    />
+                                )}
+                            />
+                            <Route
+                                exact
+                                path="/client/signup"
+                                render={(props) => (
+                                    <Signup
+                                        {...props}
+                                        loggedInStatus={
+                                            this.state.loggedInStatus
+                                        }
+                                        handleLogin={this.handleLogin}
+                                    />
+                                )}
+                            />
+                            <Redirect to="/client/" />
+                        </Switch>
+                        <Footer />
+                    </section>
                 )}
-                <Switch>
-                    <Route exact path="/client/" component={Home} />
-                    {/* <Route exact path="/client/aboutus" component={Aboutus} /> */}
-                    <Route
-                        exact
-                        path="/client/blogs"
-                        render={(props) => (
-                            <Blogs {...props} userID={this.state.userID} />
-                        )}
-                    />
-                    <Route
-                        exact
-                        path="/client/blogs/view/:id"
-                        render={(props) => (
-                            <BlogView {...props} userID={this.state.userID} />
-                        )}
-                    />
-                    <Route
-                        exact
-                        path="/client/blogs/add"
-                        render={(props) => (
-                            <BlogCreate {...props} userID={this.state.userID} />
-                        )}
-                    />
-                    <Route
-                        exact
-                        path="/client/blogs/edit/:id"
-                        render={(props) => (
-                            <BlogEdit {...props} userID={this.state.userID} />
-                        )}
-                    />
-                    <Route
-                        exact
-                        path="/client/login"
-                        render={(props) => (
-                            <Login
-                                {...props}
-                                loggedInStatus={this.state.loggedInStatus}
-                                handleLogin={this.handleLogin}
-                            />
-                        )}
-                    />
-                    <Route
-                        exact
-                        path="/client/problemslist"
-                        render={(props) => (
-                            <ProblemsList
-                                {...props}
-                                userID={this.state.userID}
-                            />
-                        )}
-                    />
-                    <Route
-                        exact
-                        path="/client/signup"
-                        render={(props) => (
-                            <Signup
-                                {...props}
-                                loggedInStatus={this.state.loggedInStatus}
-                                handleLogin={this.handleLogin}
-                            />
-                        )}
-                    />
-                    <Redirect to="/client/" />
-                </Switch>
-                <Footer />
             </BrowserRouter>
         );
     }
