@@ -33,10 +33,6 @@ class App extends Component {
 
     componentDidMount() {
         this.setState({ loading: true });
-        setTimeout(() => {
-            this.setState({ loading: false });
-        }, 1000);
-
         axios
             .get("/user/loggedin", {
                 withCredentials: true,
@@ -49,6 +45,9 @@ class App extends Component {
                         userID: res.data.userID,
                     });
                 }
+                setTimeout(() => {
+                    this.setState({ loading: false });
+                }, 100);
             });
     }
 
